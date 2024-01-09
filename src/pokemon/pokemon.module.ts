@@ -3,6 +3,7 @@ import { PokemonController } from './infrastructure/controller/pokemon.controlle
 import { PokemonService } from './applications/service/pokemon.service';
 import { PokemonServicePort } from './applications/ports/api/pokemon.service.port';
 import { PokemonClient } from './domain/config/pokemon/pokemon.client';
+import { PokemonMapper } from './domain/mappers/pokemon.mapper';
 
 @Module({
   imports: [],
@@ -10,6 +11,7 @@ import { PokemonClient } from './domain/config/pokemon/pokemon.client';
   providers: [
     { provide: PokemonServicePort, useClass: PokemonService },
     PokemonClient,
+    PokemonMapper
   ],
   exports: [],
 })

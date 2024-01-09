@@ -23,6 +23,23 @@ jobs:
           run: yarn run lint
         - name: Prettier
           run: yarn run format-check
+    run-tests:
+      name: Run tests
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check out Git repository
+          uses: actions/checkout@v3
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v1
+          with:
+            node-version: 16
+
+        - name: Install Node.js dependencies
+          run: yarn install --frozen-lockfile
+
+        - name: Run tests
+          run: yarn run test
     build:
       needs: run-linters
       runs-on: ubuntu-latest

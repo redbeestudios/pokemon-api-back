@@ -5,6 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   require('dotenv').config();
   const port = 5000;
+  console.log('Listening on port ', port);
   await app.listen(port);
 }
 bootstrap();

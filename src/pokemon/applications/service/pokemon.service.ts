@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { PokemonServicePort } from '../ports/api/pokemon.service.port';
-import { PokemonClient } from 'src/pokemon/domain/config/pokemon/pokemon.client';
+import { PokemonClient } from '../../../pokemon/domain/config/pokemon/pokemon.client';
+import { PokemonMapper } from '../../../pokemon/domain/mappers/pokemon.mapper';
 
 @Injectable()
 export class PokemonService implements PokemonServicePort {
-  constructor(private readonly pokemonClient: PokemonClient) {}
+  constructor(
+    private readonly pokemonClient: PokemonClient,
+    private readonly pokemonMapper: PokemonMapper,
+  ) {}
+  
   async getPokemons(): Promise<any> {
     return this.pokemonClient.getPokemonByName('');
   }
   async getPokemonByName(name: string): Promise<any> {
-    console.log('🚀 ~ Getting pokemon with name-->', name);
-    return this.pokemonClient.getPokemonByName(name);
+    const pokemon =  await this.pokemonClient.getPokemonByName(name);
+    return this.pokemonMapper.toDto(pokemon);
   }
 }
