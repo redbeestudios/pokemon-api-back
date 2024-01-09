@@ -6,7 +6,7 @@ export class PokemonClient {
   private readonly apiUrl: string;
   constructor() {
     require('dotenv').config();
-    this.apiUrl = process.env.POKEMON_API_URL;
+    this.apiUrl = 'https://pokeapi.co/api/v2/pokemon';
   }
   async getPokemonByName(name: string): Promise<AxiosResponse> {
     try {
