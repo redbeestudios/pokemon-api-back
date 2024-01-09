@@ -35,6 +35,7 @@ describe('PokemonMapper', () => {
         height: 1,
         forms: [],
         abilities: [],
+        gameStats: [1,2,3,4,5],
       });
     });
   });
