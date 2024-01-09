@@ -7,7 +7,6 @@ jobs:
     run-linters:
       name: Run linters
       runs-on: ubuntu-latest
-
       steps:
         - name: Check out Git repository
           uses: actions/checkout@v3
@@ -18,7 +17,7 @@ jobs:
             node-version: 16
 
         - name: Install Node.js dependencies
-          run: yarn ci
+          run: yarn install --frozen-lockfile
 
         - name: Run linters
           uses: wearerequired/lint-action@v2
@@ -26,25 +25,26 @@ jobs:
             eslint: true
             prettier: true
     build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout source
-              uses: actions/checkout@v3
-            - name: Loging to DockerHub
-              run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            - name: Build Docker image
-              run: docker build -t andryredbee/pokemon-api-back .
-            - name: Push Docker image
-              run: docker push andryredbee/pokemon-api-back:latest
+      needs: run-linters
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout source
+            uses: actions/checkout@v3
+          - name: Loging to DockerHub
+            run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          - name: Build Docker image
+            run: docker build -t andryredbee/pokemon-api-back .
+          - name: Push Docker image
+            run: docker push andryredbee/pokemon-api-back:latest
 
     deploy:
-        needs: build
-        runs-on: [aws-ec2]
-        steps:
-            - name: Pull image from dockerhub
-              run: docker pull andryredbee/pokemon-api-back:latest
-            - name: Delete old container
-              run: docker rm -f pokemon-api-back-container
-            - name: Run new container
-              run: docker run -d --name pokemon-api-back-container -p 5000:5000 andryredbee/pokemon-api-back:latest
+      needs: build
+      runs-on: [aws-ec2]
+      steps:
+          - name: Pull image from dockerhub
+            run: docker pull andryredbee/pokemon-api-back:latest
+          - name: Delete old container
+            run: docker rm -f pokemon-api-back-container
+          - name: Run new container
+            run: docker run -d --name pokemon-api-back-container -p 5000:5000 andryredbee/pokemon-api-back:latest
             
