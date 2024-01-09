@@ -9,6 +9,7 @@ export class PokemonService implements PokemonServicePort {
     return this.pokemonClient.getPokemonByName('');
   }
   async getPokemonByName(name: string): Promise<any> {
+    console.log('🚀 ~ Getting pokemon with name-->', name);
     return this.pokemonClient.getPokemonByName(name);
   }
 }
