@@ -7,7 +7,10 @@ import { PokemonClient } from './domain/config/pokemon/pokemon.client';
 @Module({
   imports: [],
   controllers: [PokemonController],
-  providers: [{ provide: PokemonServicePort, useClass: PokemonService }, PokemonClient],
-  exports: []
+  providers: [
+    { provide: PokemonServicePort, useClass: PokemonService },
+    PokemonClient,
+  ],
+  exports: [],
 })
-export class PokemonModule { }
+export class PokemonModule {}

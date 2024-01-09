@@ -5,8 +5,8 @@ import { PokemonServicePort } from '../../applications/ports/api/pokemon.service
 export class PokemonController {
   constructor(
     @Inject(PokemonServicePort)
-    private readonly pokemonService: PokemonServicePort
-  ) { }
+    private readonly pokemonService: PokemonServicePort,
+  ) {}
 
   @Get()
   getAllPokemons() {
