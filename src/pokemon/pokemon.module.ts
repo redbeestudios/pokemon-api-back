@@ -11,7 +11,7 @@ import { PokemonMapper } from './domain/mappers/pokemon.mapper';
   providers: [
     { provide: PokemonServicePort, useClass: PokemonService },
     PokemonClient,
-    PokemonMapper
+    PokemonMapper,
   ],
   exports: [],
 })

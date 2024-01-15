@@ -17,4 +17,14 @@ export class PokemonClient {
       throw new HttpException(error, 500);
     }
   }
+
+  async getAllPokemons(): Promise<AxiosResponse> {
+    try {
+      const url = this.apiUrl;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      throw new HttpException(error, 500);
+    }
+  }
 }
