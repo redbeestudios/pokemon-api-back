@@ -78,5 +78,5 @@ jobs:
           - name: Delete old container
             run: docker rm -f pokemon-api-back-container
           - name: Run new container
-            run: docker run -d --name pokemon-api-back-container -p 5000:5000 andryredbee/pokemon-api-back:latest
+            run: docker run -d --name pokemon-api-back-container -p 5000:5000 andryredbee/pokemon-api-back:${{ github.sha }}
             
