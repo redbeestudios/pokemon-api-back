@@ -18,10 +18,4 @@ export class PokemonController {
     console.log('Getting pokemon by name: ', name);
     return this.pokemonService.getPokemonByName(name);
   }
-
-  @Get('/health-check')
-  getPokemonByAbility() {
-    console.log('Deployado papu');
-    return 'Deployado papu';
-  }
 }
