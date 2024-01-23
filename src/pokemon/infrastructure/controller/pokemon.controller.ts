@@ -18,7 +18,7 @@ export class PokemonController {
     return this.pokemonService.getPokemonByName(name);
   }
 
-  @Get('health-check')
+  @Get('/health-check')
   getPokemonByAbility() {
     return 'Deployado papu';
   }
