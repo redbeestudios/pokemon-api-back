@@ -13,7 +13,7 @@ export class PokemonController {
     return this.pokemonService.getPokemons();
   }
 
-  @Get(':name')
+  @Get('find/:name')
   getPokemonByName(@Param('name') name: string) {
     return this.pokemonService.getPokemonByName(name);
   }
