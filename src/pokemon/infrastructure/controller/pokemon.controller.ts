@@ -15,11 +15,13 @@ export class PokemonController {
 
   @Get('find/:name')
   getPokemonByName(@Param('name') name: string) {
+    console.log('Getting pokemon by name: ', name);
     return this.pokemonService.getPokemonByName(name);
   }
 
   @Get('/health-check')
   getPokemonByAbility() {
+    console.log('Deployado papu');
     return 'Deployado papu';
   }
 }
