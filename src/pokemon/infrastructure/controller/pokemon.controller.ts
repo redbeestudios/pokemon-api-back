@@ -18,4 +18,9 @@ export class PokemonController {
     console.log('Getting pokemon by name: ', name);
     return this.pokemonService.getPokemonByName(name);
   }
+  // get a test controller saying: deployado en prod
+  @Get('test')
+  getTest() {
+    return 'Deployado en prod';
+  }
 }
