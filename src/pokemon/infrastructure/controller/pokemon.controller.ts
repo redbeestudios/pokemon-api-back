@@ -21,6 +21,6 @@ export class PokemonController {
   // get a test controller saying: deployado en prod
   @Get('test')
   getTest() {
-    return 'Deployado en prod';
+    return 'Deployado en prod papurri';
   }
 }
