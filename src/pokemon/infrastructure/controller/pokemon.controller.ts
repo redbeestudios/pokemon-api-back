@@ -24,5 +24,4 @@ export class PokemonController {
   test() {
     return 'deployado papu';
   }
-
 }
